@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/jpg" href="img/favicon.png" />
+    <!--style-->
+    <link rel="stylesheet" href="style.css" />
+    <!--bootstrap-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <title>Upcoming Events</title>
+  </head>
+  <body class="bg-color">
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <div class="imgLogo">
+            <img src="./img/amazing_brand.png" alt="Logo" />
+          </div>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="./index.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Upcoming Events</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./pastEvents.html">Past Events</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./contact.html">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./stats.html">Stats</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!--carousel-->
+      <div
+        id="carouselSlidesOnly"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="./img/optional_banner_1.jpg"
+              class="d-block w-100"
+              alt="Banner 1"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="./img/optional_banner_2.jpg"
+              class="d-block w-100"
+              alt="Banner 2"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="./img/optional_banner_3.jpg"
+              class="d-block w-100"
+              alt="Banner 3"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!--form ckeckout and search-->
+    <section class="container">
+      <div class="form-check form-check-inline mb-4 mt-4 mb-lg-0">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inlineCheckbox1"
+          value="option1"
+        />
+        <label class="form-check-label" for="inlineCheckbox1"
+          >Music Concert</label
+        >
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inlineCheckbox2"
+          value="option2"
+        />
+        <label class="form-check-label" for="inlineCheckbox2">Food</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inlineCheckbox3"
+          value="option3"
+        />
+        <label class="form-check-label" for="inlineCheckbox3">Cinema</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inlineCheckbox4"
+          value="option4"
+        />
+        <label class="form-check-label" for="inlineCheckbox4">Boooks</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inlineCheckbox5"
+          value="option5"
+        />
+        <label class="form-check-label" for="inlineCheckbox5"
+          >Costume Party</label
+        >
+      </div>
+
+      <!--search form-->
+      <form class="d-flex" role="search">
+        <input
+          class="form-control me-4 mt-2 mb-4"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-danger mb-4" type="submit">
+          Search
+        </button>
+      </form>
+    </section>
+
+    <!--card 1-->
+    <section class="container d-flex justify-content-around">
+      <div class="row g-4 mb-8 mt-4">
+        <div class="col">
+          <div class="card text-center border-secondary" style="width: 18rem">
+            <img src="./img/books.jpg" class="card-img-top" alt="Book" />
+            <div class="card-body">
+              <h5 class="card-title text-secondary fw-bold">Book</h5>
+              <p class="card-text text-secondary">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <p class="card text-success fw-semibold">$500</p>
+              <a href="details.html" class="btn btn-dark">Details</a>
+            </div>
+          </div>
+        </div>
+        <!--card 2-->
+        <div class="col">
+          <div class="card text-center border-secondary" style="width: 18rem">
+            <img src="./img/cinema.jpg" class="card-img-top" alt="Cinema" />
+            <div class="card-body">
+              <h5 class="card-title text-secondary fw-bold">Cinema</h5>
+              <p class="card-text text-secondary">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <p class="card text-success fw-semibold">$500</p>
+              <a href="details.html" class="btn btn-dark">Details</a>
+            </div>
+          </div>
+        </div>
+        <!--card 3-->
+        <div class="col">
+          <div class="card text-center border-secondary" style="width: 18rem">
+            <img
+              src="./img/costume_party.jpg"
+              class="card-img-top"
+              alt="Costume Party"
+            />
+            <div class="card-body">
+              <h5 class="card-title text-secondary fw-bold">Costume Party</h5>
+              <p class="card-text text-secondary">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <p class="card text-success fw-semibold">$500</p>
+              <a href="details.html" class="btn btn-dark">Details</a>
+            </div>
+          </div>
+        </div>
+        <!--card 4-->
+        <div class="col">
+          <div class="card text-center border-secondary" style="width: 18rem">
+            <img src="./img/marathon.jpg" class="card-img-top" alt="marathon" />
+            <div class="card-body">
+              <h5 class="card-title text-secondary fw-bold">Marathon</h5>
+              <p class="card-text text-secondary">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <p class="card text-success fw-semibold">$500</p>
+              <a href="details.html" class="btn btn-dark">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div
+          class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+        >
+          <!--social media-->
+          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3">
+              <a class="text-body-secondary icon-link-hover" href="#">
+                <img
+                  class="bi"
+                  width="24"
+                  height="24"
+                  src="./img/facebook.png"
+                  alt=" facebook"
+                />
+              </a>
+            </li>
+            <li class="ms-3">
+              <a class="text-body-secondary icon-link-hover" href="#">
+                <img
+                  class="bi"
+                  width="24"
+                  height="24"
+                  src="./img/instagram.png"
+                  alt=" instagram"
+              /></a>
+            </li>
+            <li class="ms-3">
+              <a class="text-body-secondary icon-link-hover" href="#"
+                ><img
+                  class="bi"
+                  width="24"
+                  height="24"
+                  src="./img/whatsapp.png"
+                  alt=" whatsapp"
+              /></a>
+            </li>
+          </ul>
+
+          <!--cohorte-->
+          <div class="col-md-4 d-flex align-items-center">
+            <span class="mb-3 mb-md-0 text-body-secondary">© 2023 COHORTE</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--bootstrap-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
