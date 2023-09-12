@@ -95,7 +95,7 @@ function showCheck(array, container) {
   container.innerHTML += checkBox;
 }
 
-//call function with parameters of array and variable dinamicCheckbox
+//call fn with parameters of array and dinamicCheckbox
 showCheck(categoryCheckbox, dinamicCheckbox);
 
 // CHECKBOX FILTER
@@ -106,29 +106,29 @@ function checkboxFilter() {
   let nodeList = document.querySelectorAll("input[type='checkbox']:checked");
   //console.log(nodeList);
 
-  //Create new array of elements selected and save in variable inputValue
+  //Create new array of elements selected and save in inputValue
   let arrayValue = Array.from(nodeList).map((check) => check.value);
   //console.log("new array", arrayValue);
 
-  //If checkbox is selected, show filter of array events
+  //If checkbox is selected, show filter of arrayPastEvents
   if (arrayValue.length > 0) {
     let checkboxFilter = arrayPastEvents.filter((oneObject) =>
       arrayValue.includes(oneObject.category)
     );
     return checkboxFilter;
   } else {
-    //If checkbox isn't selected, return array of events without a filter
+    //If checkbox isn't selected, return arrayPastEvents without a filter
     return arrayPastEvents;
   }
 }
 
-//Event handler change
+//Event change
 dinamicCheckbox.addEventListener("change", (e) => {
   //console.log([e.target.value]);
 
   const returnCombinedFilters = filterCombined(arrayPastEvents, search);
 
-  //Call fn with parameters of returnCombinedFilters and variable dinamicCard
+  //Call fn with parameters of returnCombinedFilters and dinamicCard
   structureCards(returnCombinedFilters, dinamicCard);
   //console.log(structureCards);
 });
@@ -141,7 +141,7 @@ const search = document.querySelector('input[type="search"]');
 //console.log([search]);
 //console.log([search.value]);
 
-// Event handler keyup
+// Event keyup
 search.addEventListener("keyup", (e) => {
   //console.log(search.value);
   const returnCombinedFilters = filterCombined(arrayPastEvents, search);

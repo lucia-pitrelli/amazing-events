@@ -1,25 +1,25 @@
-//rename array
 let events = data.events;
-console.log("list events", events);
+//console.log("list events", events);
 
 const locationSearch = location.search;
-console.log("location", locationSearch);
+//console.log("location", locationSearch);
 
-const objetoURL = new URLSearchParams(locationSearch);
-console.log("URL", objetoURL);
+const objectURL = new URLSearchParams(locationSearch);
+//console.log("URL", objectURL);
 
-//terminar codigo ----VER
-const valueKeyParam = objetoURL.get("id");
-console.log("value", valueKeyParam);
+//method get
+const valueKeyParam = objectURL.get("id");
+//console.log("value", valueKeyParam);
 
-// falta variable para pasar en show details  ---VER
+//find return unique value in array events
 let eventId = events.find((object) => object._id === valueKeyParam);
-console.log("eventId", eventId);
+//console.log("eventId", eventId);
 
 //return the parameter on id, Html of details
 let dinamicDetails = document.getElementById("detailsId");
-console.log("details", dinamicDetails);
+//console.log("details", dinamicDetails);
 
+//fn structure of card detail
 function structureDetails(oneObject) {
   let template = "";
   return (template = ` 
@@ -55,10 +55,9 @@ function structureDetails(oneObject) {
       `);
 }
 
-//falta desarrollo -> va sin bucle porque queremos imprimir un solo objeto
-function showDetails(elementHTML, object) {
-  elementHTML.innerHTML = structureDetails(object);
+//Fn print card detail
+function showDetails(elementHTML, oneObject) {
+  elementHTML.innerHTML = structureDetails(oneObject);
 }
 
-//falta la segunda variable que es el objeto creado --- VER
 showDetails(dinamicDetails, eventId);
