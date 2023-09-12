@@ -1,23 +1,17 @@
 let events = data.events;
-//console.log("list events", events);
 
 const locationSearch = location.search;
-//console.log("location", locationSearch);
 
 const objectURL = new URLSearchParams(locationSearch);
-//console.log("URL", objectURL);
 
 //method get
 const valueKeyParam = objectURL.get("id");
-//console.log("value", valueKeyParam);
 
-//find return unique value in array events
+//find - return unique value in array events
 let eventId = events.find((object) => object._id === valueKeyParam);
-//console.log("eventId", eventId);
 
 //return the parameter on id, Html of details
 let dinamicDetails = document.getElementById("detailsId");
-//console.log("details", dinamicDetails);
 
 //fn structure of card detail
 function structureDetails(oneObject) {

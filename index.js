@@ -1,12 +1,9 @@
-//rename array
 let events = data.events;
-//console.log("list events", events);
 
 //  DINAMIC CARDS
 
 //Return the parameter on id, Html of cards
 let dinamicCard = document.getElementById("cardId");
-//console.log("cards", dinamicCard);
 
 // Create structure of dinamic cards with interpolation of data
 function structureCards(objects, container) {
@@ -38,13 +35,11 @@ structureCards(events, dinamicCard);
 
 //Return the parameter on id, Html of checkbox
 let dinamicCheckbox = document.getElementById("chekboxId");
-//console.log("checkbox", dinamicCheckbox);
 
 //Create new array about categories of events and with Set remove the elements repeated. then save in categoryCheckbox
 let categoryCheckbox = [
   ...new Set(events.map((oneObject) => oneObject.category)),
 ];
-//console.log("categoriesNoRep", categoryCheckbox);
 
 //Create structure of checkboxes with interpolation of data
 function sctructureCheck(categories) {
@@ -84,11 +79,9 @@ showCheck(categoryCheckbox, dinamicCheckbox);
 function checkboxFilter() {
   // QuerySelectorAll returns all the inputs element with type checkbox
   let nodeList = document.querySelectorAll("input[type='checkbox']:checked");
-  console.log(nodeList);
 
   //Create new array of elements selected and save in inputValue
   let arrayValue = Array.from(nodeList).map((check) => check.value);
-  console.log("new array", arrayValue);
 
   //If checkbox is selected, show filter of array events
   if (arrayValue.length > 0) {
@@ -104,25 +97,19 @@ function checkboxFilter() {
 
 //Event change
 dinamicCheckbox.addEventListener("change", (e) => {
-  //console.log([e.target.value]);
   const returnCombinedFilters = filterCombined(events, search);
 
   //Call fn with parameters of returnCombinedFilters and variable dinamicCard
   structureCards(returnCombinedFilters, dinamicCard);
-  //console.log(structureCards);
 });
 
 // SEARCH FILTER
 
 //Select element by input search
 const search = document.querySelector('input[type="search"]');
-//console.log(search);
-//console.log([search]);
-//console.log([search.value]);
 
 // Event keyup
 search.addEventListener("keyup", (e) => {
-  //console.log(search.value);
   const returnCombinedFilters = filterCombined(events, search);
   if (returnCombinedFilters != 0) {
     structureCards(returnCombinedFilters, dinamicCard);
@@ -136,7 +123,6 @@ function filterSearch(array, input) {
   let arrayFilterSearch = array.filter((object) =>
     object.name.toLowerCase().includes(input.value.toLowerCase())
   );
-  // console.log(arrayFilterSearch);
   return arrayFilterSearch;
 }
 
@@ -144,7 +130,5 @@ function filterSearch(array, input) {
 function filterCombined(array, input) {
   const arrayFilterCheck = checkboxFilter(array);
   const arrayFilterSearch = filterSearch(arrayFilterCheck, input);
-  // console.log(arrayFilterSearch);
-  // console.log(arrayFilterCheck);
   return arrayFilterSearch;
 }
