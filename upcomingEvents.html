@@ -92,60 +92,11 @@
       </div>
     </header>
 
-    <!--form ckeckout and search-->
-    <section class="container">
-      <div class="form-check form-check-inline mb-4 mt-4 mb-lg-0">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox1"
-          value="option1"
-        />
-        <label class="form-check-label" for="inlineCheckbox1"
-          >Music Concert</label
-        >
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox2"
-          value="option2"
-        />
-        <label class="form-check-label" for="inlineCheckbox2">Food</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox3"
-          value="option3"
-        />
-        <label class="form-check-label" for="inlineCheckbox3">Cinema</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox4"
-          value="option4"
-        />
-        <label class="form-check-label" for="inlineCheckbox4">Boooks</label>
-      </div>
+    <!--form ckeckout -->
+    <section class="container" id="chekboxId"></section>
 
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox5"
-          value="option5"
-        />
-        <label class="form-check-label" for="inlineCheckbox5"
-          >Costume Party</label
-        >
-      </div>
-
-      <!--search form-->
+    <!--search form-->
+    <section>
       <form class="d-flex" role="search">
         <input
           class="form-control me-4 mt-2 mb-4"
@@ -159,75 +110,11 @@
       </form>
     </section>
 
+    <!--cards dinamicos-->
     <section
-      class="container d-flex justify-content-around row g-4 mb-8 mt-4"
-      id="card"
-    >
-      <!--card 1
-          <div class="card text-center border-secondary" style="width: 18rem">
-            <img src="./img/books.jpg" class="card-img-top" alt="Book" />
-            <div class="card-body">
-              <h5 class="card-title text-secondary fw-bold">Book</h5>
-              <p class="card-text text-secondary">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <p class="card text-success fw-semibold">$500</p>
-              <a href="details.html" class="btn btn-dark">Details</a>
-            </div>
-          </div>
-        </div>-->
-      <!--card 2
-        <div class="col">
-          <div class="card text-center border-secondary" style="width: 18rem">
-            <img src="./img/cinema.jpg" class="card-img-top" alt="Cinema" />
-            <div class="card-body">
-              <h5 class="card-title text-secondary fw-bold">Cinema</h5>
-              <p class="card-text text-secondary">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <p class="card text-success fw-semibold">$500</p>
-              <a href="details.html" class="btn btn-dark">Details</a>
-            </div>
-          </div>
-        </div>-->
-      <!--card 3
-        <div class="col">
-          <div class="card text-center border-secondary" style="width: 18rem">
-            <img
-              src="./img/costume_party.jpg"
-              class="card-img-top"
-              alt="Costume Party"
-            />
-            <div class="card-body">
-              <h5 class="card-title text-secondary fw-bold">Costume Party</h5>
-              <p class="card-text text-secondary">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <p class="card text-success fw-semibold">$500</p>
-              <a href="details.html" class="btn btn-dark">Details</a>
-            </div>
-          </div>
-        </div>-->
-      <!--card 4
-        <div class="col">
-          <div class="card text-center border-secondary" style="width: 18rem">
-            <img src="./img/marathon.jpg" class="card-img-top" alt="marathon" />
-            <div class="card-body">
-              <h5 class="card-title text-secondary fw-bold">Marathon</h5>
-              <p class="card-text text-secondary">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <p class="card text-success fw-semibold">$500</p>
-              <a href="details.html" class="btn btn-dark">Details</a>
-            </div>
-          </div>
-        </div>
-      </div>-->
-    </section>
+      class="d-flex justify-content-center gap-3 flex-wrap"
+      id="cardId"
+    ></section>
 
     <footer>
       <div class="container">
@@ -287,7 +174,7 @@
     <!--Data js-->
     <script src="./data.js"></script>
 
-    <!--Index js-->
+    <!--Upcoming events js-->
     <script src="./upcomingEvents.js"></script>
   </body>
 </html>

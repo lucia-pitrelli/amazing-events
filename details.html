@@ -94,103 +94,10 @@
       </div>
     </header>
 
-    <!--form ckeckout and search-->
-    <section class="container">
-      <div class="form-check form-check-inline mb-4 mt-4 mb-lg-0">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox1"
-          value="option1"
-        />
-        <label class="form-check-label" for="inlineCheckbox1"
-          >Music Concert</label
-        >
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox2"
-          value="option2"
-        />
-        <label class="form-check-label" for="inlineCheckbox2">Food</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox3"
-          value="option3"
-        />
-        <label class="form-check-label" for="inlineCheckbox3">Cinema</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox4"
-          value="option4"
-        />
-        <label class="form-check-label" for="inlineCheckbox4">Boooks</label>
-      </div>
-
-      <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox5"
-          value="option5"
-        />
-        <label class="form-check-label" for="inlineCheckbox5"
-          >Costume Party</label
-        >
-      </div>
-
-      <!--search form-->
-      <form class="d-flex" role="search">
-        <input
-          class="form-control me-4 mt-2 mb-4"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-danger mb-4" type="submit">
-          Search
-        </button>
-      </form>
-    </section>
-
-    <section class="container">
-      <div
-        class="card shadow-sm p-3 mb-5 bg-body-tertiary rounded"
-        style="max-width: 600px"
-      >
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img
-              src="./img/music_concert.jpg"
-              class="img-fluid rounded-start"
-              alt="music concert"
-            />
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title text-secondary fw-bold">Books</h5>
-              <p class="card-text text-secondary">Description:</p>
-              <p class="card-text">Date:</p>
-              <p class="card-text">Place:</p>
-              <p class="card-text">Capacity:</p>
-              <p class="card-text">
-                <small class="card text-success fw-semibold text-center"
-                  >Price</small
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section
+      class="d-flex justify-content-center py-3 my-4"
+      id="detailsId"
+    ></section>
 
     <footer>
       <div class="container">
@@ -245,5 +152,11 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+
+    <!--Data js-->
+    <script src="./data.js"></script>
+
+    <!--Details js-->
+    <script src="./details.js"></script>
   </body>
 </html>
