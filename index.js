@@ -1,9 +1,34 @@
-let events = data.events;
-
-//  DINAMIC CARDS
-
+let events = [];
+//Select element by input search
+const search = document.querySelector('input[type="search"]');
 //Return the parameter on id, Html of cards
 let dinamicCard = document.getElementById("cardId");
+//Return the parameter on id, Html of checkbox
+let dinamicCheckbox = document.getElementById("chekboxId");
+//Create new array about categories of events and with Set remove the elements repeated. then save in categoryCheckbox
+let categoryCheckbox = [];
+
+function callFecth() {
+  fetch("https://mindhub-xj03.onrender.com/api/amazing")
+    .then((response) => response.json())
+    .then((datosApi) => {
+      events = datosApi.events;
+      //Call the fn with parameters of array and dinamicCard
+      structureCards(events, dinamicCard);
+      categoryCheckbox = [
+        ...new Set(events.map((oneObject) => oneObject.category)),
+      ];
+      //Call fn with parameters of array and dinamicCheckbox
+      showCheck(categoryCheckbox, dinamicCheckbox);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+callFecth();
+
+//  DINAMIC CARDS
 
 // Create structure of dinamic cards with interpolation of data
 function structureCards(objects, container) {
@@ -28,18 +53,7 @@ function structureCards(objects, container) {
   container.innerHTML = template;
 }
 
-//Call the fn with parameters of array and dinamicCard
-structureCards(events, dinamicCard);
-
 // DINAMIC CHECKBOX
-
-//Return the parameter on id, Html of checkbox
-let dinamicCheckbox = document.getElementById("chekboxId");
-
-//Create new array about categories of events and with Set remove the elements repeated. then save in categoryCheckbox
-let categoryCheckbox = [
-  ...new Set(events.map((oneObject) => oneObject.category)),
-];
 
 //Create structure of checkboxes with interpolation of data
 function sctructureCheck(categories) {
@@ -69,9 +83,6 @@ function showCheck(array, container) {
   //Inject dinamic checkbox list - HTML
   container.innerHTML += checkBox;
 }
-
-//Call fn with parameters of array and dinamicCheckbox
-showCheck(categoryCheckbox, dinamicCheckbox);
 
 // CHECKBOX FILTER
 
@@ -105,16 +116,13 @@ dinamicCheckbox.addEventListener("change", (e) => {
 
 // SEARCH FILTER
 
-//Select element by input search
-const search = document.querySelector('input[type="search"]');
-
 // Event keyup
 search.addEventListener("keyup", (e) => {
   const returnCombinedFilters = filterCombined(events, search);
   if (returnCombinedFilters != 0) {
     structureCards(returnCombinedFilters, dinamicCard);
   } else {
-    return (dinamicCard.innerHTML = `<p>No results found</p>`);
+    return (dinamicCard.innerHTML = `<p>No results found</p>`); //no va acá. print tarjetas
   }
 });
 
