@@ -15,6 +15,7 @@ function callFecth() {
       events = datosApi.events;
       //Call the fn with parameters of array and dinamicCard
       structureCards(events, dinamicCard);
+      //new array
       categoryCheckbox = [
         ...new Set(events.map((oneObject) => oneObject.category)),
       ];

@@ -1,11 +1,37 @@
-let events = data.events;
+let upcomingEvents = [];
+//return the parameter on id, Html of cards
+let dinamicCard = document.getElementById("cardId");
+//return the parameter on id, Html of checkbox
+let dinamicCheckbox = document.getElementById("chekboxId");
+//create new array about categories of events and with Set remove the elements repeated. then save in categoryCheckbox
+let categoryCheckbox = [];
+//Select element by input search
+const search = document.querySelector('input[type="search"]');
+
+function callFecth() {
+  fetch("https://mindhub-xj03.onrender.com/api/amazing")
+    .then((response) => response.json())
+    .then((datosApi) => {
+      upcomingEvents = datosApi.events;
+      //call the fn with parameters of arrayUpcomingEvents and dinamicCard
+      structureCards(upcomingEvents, dinamicCard);
+      //create new array about categories of events and with Set remove the elements repeated. then save in categoryCheckbox
+      categoryCheckbox = [
+        ...new Set(upcomingEvents.map((oneObject) => oneObject.category)),
+      ];
+      //call fn with parameters of array and dinamicCheckbox
+      showCheck(categoryCheckbox, dinamicCheckbox);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+callFecth();
 
 //  DINAMIC CARDS
 
-//return the parameter on id, Html of cards
-let dinamicCard = document.getElementById("cardId");
-
-//fn filter upcoming events and add in arrayUpcomingEvents
+//fn filter upcoming events and add in arrayUpcomingEvents - VER
 const arrayUpcomingEvents = [];
 
 function filterEvents() {
@@ -18,8 +44,6 @@ function filterEvents() {
     })
   );
 }
-
-filterEvents();
 
 // Structure of dinamic cards
 function structureCards(objects, container) {
@@ -43,18 +67,7 @@ function structureCards(objects, container) {
   container.innerHTML = template;
 }
 
-//call the fn with parameters of arrayUpcomingEvents and dinamicCard
-structureCards(arrayUpcomingEvents, dinamicCard);
-
 // DINAMIC CHECKBOX
-
-//return the parameter on id, Html of checkbox
-let dinamicCheckbox = document.getElementById("chekboxId");
-
-//create new array about categories of events and with Set remove the elements repeated. then save in categoryCheckbox
-let categoryCheckbox = [
-  ...new Set(arrayUpcomingEvents.map((oneObject) => oneObject.category)),
-];
 
 //create structure of checkboxes with interpolation of data
 function sctructureCheck(categories) {
@@ -84,9 +97,6 @@ function showCheck(array, container) {
   //inject dinamic checkbox list - HTML
   container.innerHTML += checkBox;
 }
-
-//call fn with parameters of array and dinamicCheckbox
-showCheck(categoryCheckbox, dinamicCheckbox);
 
 // CHECKBOX FILTER
 
@@ -119,9 +129,6 @@ dinamicCheckbox.addEventListener("change", (e) => {
 });
 
 // SEARCH FILTER
-
-//Select element by input search
-const search = document.querySelector('input[type="search"]');
 
 // Event keyup
 search.addEventListener("keyup", (e) => {

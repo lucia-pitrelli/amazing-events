@@ -1,25 +1,52 @@
-let events = data.events;
+let pastEvents = [];
+//return the parameter on id, Html of cards
+let dinamicCard = document.getElementById("cardId");
+//return the parameter on id, Html of checkbox
+let dinamicCheckbox = document.getElementById("chekboxId");
+//create new array about categories of events and with Set remove the elements repeated. then save in categoryCheckbox
+let categoryCheckbox = [];
+//Select element by input search
+const search = document.querySelector('input[type="search"]');
+
+function callFecth() {
+  fetch("https://mindhub-xj03.onrender.com/api/amazing")
+    .then((response) => response.json())
+    .then((datosApi) => {
+      //asigno valor a array
+      pastEvents = datosApi.events;
+      //call the fn with parameters of arrayPastEvents and dinamicCard
+      structureCards(pastEvents, dinamicCard);
+      //create new array about categories of events and with Set remove the elements repeated. then save in categoryCheckbox
+      categoryCheckbox = [
+        ...new Set(pastEvents.map((oneObject) => oneObject.category)),
+      ];
+      //call fn with parameters of array and dinamicCheckbox
+      showCheck(categoryCheckbox, dinamicCheckbox);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+callFecth();
 
 //  DINAMIC CARDS
 
-//return the parameter on id, Html of cards
-let dinamicCard = document.getElementById("cardId");
+//fn filter past events and add in arrayPastEvents VER
+//const arrayPastEvents = [];
 
-//fn filter past events and add in arrayPastEvents
-const arrayPastEvents = [];
+//function filterEvents() {
+//  const currentDate = new Date(data.currentDate);
 
-function filterEvents() {
-  const currentDate = new Date(data.currentDate);
+//  arrayPastEvents.push(
+//    ...events.filter((event) => {
+//      const dateEvent = new Date(event.date);
+//      return dateEvent < currentDate;
+//    })
+//  );
+//}
 
-  arrayPastEvents.push(
-    ...events.filter((event) => {
-      const dateEvent = new Date(event.date);
-      return dateEvent < currentDate;
-    })
-  );
-}
-
-filterEvents();
+//filterEvents();
 
 // structure of dinamic cards
 function structureCards(objects, container) {
@@ -44,18 +71,7 @@ function structureCards(objects, container) {
   container.innerHTML = template;
 }
 
-//call the fn with parameters of arrayPastEvents and dinamicCard
-structureCards(arrayPastEvents, dinamicCard);
-
 // DINAMIC CHECKBOX
-
-//return the parameter on id, Html of checkbox
-let dinamicCheckbox = document.getElementById("chekboxId");
-
-//create new array about categories of events and with Set remove the elements repeated. then save in categoryCheckbox
-let categoryCheckbox = [
-  ...new Set(arrayPastEvents.map((oneObject) => oneObject.category)),
-];
 
 //create structure of checkboxes with interpolation of data
 function sctructureCheck(categories) {
@@ -85,9 +101,6 @@ function showCheck(array, container) {
   //inject dinamic checkbox list - HTML
   container.innerHTML += checkBox;
 }
-
-//call fn with parameters of array and dinamicCheckbox
-showCheck(categoryCheckbox, dinamicCheckbox);
 
 // CHECKBOX FILTER
 
@@ -120,9 +133,6 @@ dinamicCheckbox.addEventListener("change", (e) => {
 });
 
 // SEARCH FILTER
-
-//Select element by input search
-const search = document.querySelector('input[type="search"]');
 
 // Event keyup
 search.addEventListener("keyup", (e) => {
