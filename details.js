@@ -1,17 +1,32 @@
-let events = data.events;
-
-const locationSearch = location.search;
-
-const objectURL = new URLSearchParams(locationSearch);
-
-//method get
-const valueKeyParam = objectURL.get("id");
-
-//find - return unique value in array events
-let eventId = events.find((object) => object._id === valueKeyParam);
-
 //return the parameter on id, Html of details
 let dinamicDetails = document.getElementById("detailsId");
+
+function callFecth() {
+  fetch("https://mindhub-xj03.onrender.com/api/amazing")
+    .then((response) => response.json())
+    .then((datosApi) => {
+      let events = datosApi.events;
+
+      const locationSearch = location.search;
+      console.log(locationSearch);
+      const objectURL = new URLSearchParams(locationSearch);
+      console.log(objectURL);
+      //method get
+      const valueKeyParam = objectURL.get("id");
+      console.log(valueKeyParam);
+
+      //find - return unique value in array events
+      let eventId = events.find((object) => object._id == valueKeyParam);
+      console.log(eventId);
+
+      showDetails(dinamicDetails, eventId);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+callFecth();
 
 //fn structure of card detail
 function structureDetails(oneObject) {
@@ -24,9 +39,9 @@ function structureDetails(oneObject) {
           <div class="col-md-4">
             <img
               src="${oneObject.image}"
-              class="img-fluid rounded-start"
               alt=""
-            />
+              class="img-fluid rounded-start"
+            >
           </div>
           <div class="col-md-8">
             <div class="card-body">
@@ -53,5 +68,3 @@ function structureDetails(oneObject) {
 function showDetails(elementHTML, oneObject) {
   elementHTML.innerHTML = structureDetails(oneObject);
 }
-
-showDetails(dinamicDetails, eventId);

@@ -1,4 +1,5 @@
-let events = [];
+let currentDate;
+let events;
 
 //TABLE 1
 let dinamicTable1 = document.getElementById("table1Id");
@@ -17,15 +18,12 @@ function callFecth() {
     .then((response) => response.json())
     .then((datosApi) => {
       events = datosApi.events;
-      currentDate = datosApi.currentDate;
+      currentDate = new Date(datosApi.currentDate);
       console.log("list", events);
       console.log("fecha actual", currentDate);
+
       //fn called
-      structureTable2(events, dinamicTable1);
-      //fn called
-      structureTable2(events, dinamicTable2);
-      //fn called
-      structureTable3(events, dinamicTable3);
+      createTable123();
     })
     .catch((error) => {
       console.log(error);
@@ -34,66 +32,131 @@ function callFecth() {
 
 callFecth();
 
-// COMO OBTENGO NUEVO ARRAY CON EVENTOS PASADOS
-//const arrayPastEvents = [];
+//Create Tables 1, 2 & 3
+function createTable123() {
+  //Array of past events
+  const pastEvents = [];
 
-//function filterPastEvents() {
-// const currentDate = new Date(data.currentDate);
-//El método filter() crea un nuevo array con todos los elementos que cumplan la condición implementada por la función dada.
-// arrayPastEvents.push(
-//   ...events.filter((event) => {
-//     const dateEvent = new Date(event.date);
-//    return dateEvent < currentDate;
-//  })
-// );
-//}
+  function getPastEvents(event) {
+    const eventExists = pastEvents.find(
+      (item) => event.category === item.category
+    );
+    if (eventExists) {
+      eventExists.revenues += event.price * event.assistance;
+      eventExists.assistance += event.assistance;
+      eventExists.capacity += event.capacity;
+    } else {
+      pastEvents.push({
+        category: event.category,
+        revenues: event.price * event.assistance,
+        assistance: event.assistance,
+        capacity: event.capacity,
+      });
+    }
+  }
 
-//filterPastEvents();
+  //fn filter past events from array events by assistance and sort
+  const filteredPastEvents = events
+    .filter((event) => event.assistance)
+    .sort((a, b) => b.assistance / b.capacity - a.assistance / a.capacity);
 
-// PRINT STRUCTURE TABLE 1
-function structureTable1(string) {
-  let template = "";
-  template = `
+  filteredPastEvents.forEach(getPastEvents);
+  console.log("fill data past events", filteredPastEvents);
+
+  const capacityAllEvents = events.sort((a, b) => b.capacity - a.capacity);
+
+  // PRINT STRUCTURE TABLE 1
+  function structureTable1(attendance, capacity) {
+    let template = "";
+
+    for (let i = 0; i < 1; i++) {
+      template += `
             <tr>
-            <td>${string}</td>
-            <td>${string}</td>
-            <td>${string}</td>
+            <td>${attendance[i].name}  ${(
+        (attendance[i].assistance / attendance[i].capacity) *
+        100
+      ).toFixed(2)} %</td>
+            <td>${attendance[attendance.length - i - 1].name} ${(
+        (attendance[attendance.length - i - 1].assistance /
+          attendance[attendance.length - i - 1].capacity) *
+        100
+      ).toFixed(2)} %</td>
+            <td>${capacity[i].name} ${capacity[i].capacity}</td>
           </tr>
     `;
+    }
 
-  return template;
-}
-
-console.log(structureTable1);
-
-// PRINT STRUCTURE TABLE 2
-function structureTable2(objects, container) {
-  let template = "";
-  for (let oneObject of objects) {
-    template += ` <tr>
-            <th scope="row">${oneObject.category}</th>
-            <td>$ ${oneObject.price}</td>
-            <td>${oneObject.assistance} %</td>
-          </tr>`;
+    return template;
   }
-  //Inject dinamic table list - HTML
-  container.innerHTML = template;
-}
 
-console.log(structureTable2);
+  console.log(structureTable1);
 
-// PRINT STRUCTURE TABLE 3
-function structureTable3(objects, container) {
-  let template = "";
-  for (let oneObject of objects) {
-    template += ` <tr>
-            <th scope="row">${oneObject.category}</th>
-            <td>$ ${oneObject.price}</td>
-            <td>${oneObject.assistance} %</td>
+  dinamicTable1.innerHTML = structureTable1(
+    filteredPastEvents,
+    capacityAllEvents
+  );
+
+  // PRINT STRUCTURE TABLE 2 - PAST EVENTS
+  function structureTable2(events) {
+    let template = "";
+    for (let item of events) {
+      template += ` <tr>
+            <th scope="row">${item.category}</th>
+            <td>$ ${item.revenues}</td>
+            <td>${((item.assistance / item.capacity) * 100).toFixed(2)} %</td>
           </tr>`;
-  }
-  //Inject dinamic table list - HTML
-  container.innerHTML = template;
-}
+    }
 
-console.log(structureTable3);
+    return template;
+  }
+
+  dinamicTable2.innerHTML = structureTable2(pastEvents);
+  console.log(structureTable2);
+
+  //TABLE 3 - UPCOMING EVENTS
+  //array of upcoming events
+  const upcomingEvents = [];
+
+  function getUpcomingEvents(event) {
+    const eventExists = upcomingEvents.find(
+      (item) => event.category === item.category
+    );
+    if (eventExists) {
+      eventExists.revenues += event.price * event.estimate;
+      eventExists.estimate += event.estimate;
+      eventExists.capacity += event.capacity;
+    } else {
+      upcomingEvents.push({
+        category: event.category,
+        revenues: event.price * event.estimate,
+        estimate: event.estimate,
+        capacity: event.capacity,
+      });
+    }
+  }
+
+  //fn filter upcoming events from array events by esimate and sort
+  const filteredUpcomingEvents = events
+    .filter((event) => event.estimate)
+    .sort((a, b) => b.estimate / b.capacity - a.estimate / a.capacity);
+
+  filteredUpcomingEvents.forEach(getUpcomingEvents);
+  console.log("fill data upcoming events", filteredUpcomingEvents);
+
+  // PRINT STRUCTURE TABLE 3 - upcoming events
+  function structureTable3(events) {
+    let template = "";
+    for (let item of events) {
+      template += ` <tr>
+            <th scope="row">${item.category}</th>
+            <td>$ ${item.revenues}</td>
+            <td>${((item.estimate / item.capacity) * 100).toFixed(2)} %</td>
+          </tr>`;
+    }
+
+    return template;
+  }
+
+  dinamicTable3.innerHTML = structureTable3(upcomingEvents);
+  console.log(structureTable3);
+}

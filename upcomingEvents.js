@@ -1,4 +1,3 @@
-let upcomingEvents = [];
 //return the parameter on id, Html of cards
 let dinamicCard = document.getElementById("cardId");
 //return the parameter on id, Html of checkbox
@@ -8,16 +7,34 @@ let categoryCheckbox = [];
 //Select element by input search
 const search = document.querySelector('input[type="search"]');
 
+//fn filter upcoming events and add in arrayUpcomingEvents - VER
+const arrayUpcomingEvents = [];
+
 function callFecth() {
   fetch("https://mindhub-xj03.onrender.com/api/amazing")
     .then((response) => response.json())
     .then((datosApi) => {
-      upcomingEvents = datosApi.events;
+      let events = datosApi.events;
+      console.log(events);
+
+      function filterEvents() {
+        const currentDate = new Date(datosApi.currentDate);
+
+        arrayUpcomingEvents.push(
+          ...events.filter((event) => {
+            const dateEvent = new Date(event.date);
+            return dateEvent > currentDate;
+          })
+        );
+      }
+      // call fn
+      filterEvents();
+
       //call the fn with parameters of arrayUpcomingEvents and dinamicCard
-      structureCards(upcomingEvents, dinamicCard);
+      structureCards(arrayUpcomingEvents, dinamicCard);
       //create new array about categories of events and with Set remove the elements repeated. then save in categoryCheckbox
       categoryCheckbox = [
-        ...new Set(upcomingEvents.map((oneObject) => oneObject.category)),
+        ...new Set(arrayUpcomingEvents.map((oneObject) => oneObject.category)),
       ];
       //call fn with parameters of array and dinamicCheckbox
       showCheck(categoryCheckbox, dinamicCheckbox);
@@ -30,20 +47,6 @@ function callFecth() {
 callFecth();
 
 //  DINAMIC CARDS
-
-//fn filter upcoming events and add in arrayUpcomingEvents - VER
-const arrayUpcomingEvents = [];
-
-function filterEvents() {
-  const currentDate = new Date(data.currentDate);
-
-  arrayUpcomingEvents.push(
-    ...events.filter((event) => {
-      const dateEvent = new Date(event.date);
-      return dateEvent > currentDate;
-    })
-  );
-}
 
 // Structure of dinamic cards
 function structureCards(objects, container) {
